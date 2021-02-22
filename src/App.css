@@ -1,0 +1,9 @@
+.outer-container {
+    border-left: #a2caff;
+    border-top: #a2caff;
+    border-right: #F7CED7FF;
+    border-bottom: #F7CED7FF;
+    border-style: solid;
+    margin: 40px;
+    border-radius: 10px;
+}

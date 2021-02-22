@@ -4,7 +4,8 @@ import "./baby_name_card.css"
 
 export default function displayBabyNames(allData: IBabyNames[]) {
     return (
-        <div className="outer-container">
+        <div>
+            <hr id="top-margin"/>
             <div className="flex-container">
                 {allData.map(createBabyCard)}
             </div>
