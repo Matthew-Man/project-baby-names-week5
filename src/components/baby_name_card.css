@@ -1,0 +1,48 @@
+.outer-container {
+    border-left: #a2caff;
+    border-top: #a2caff;
+    border-right: #F7CED7FF;
+    border-bottom: #F7CED7FF;
+    border-style: solid;
+    margin: 40px;
+    border-radius: 10px;
+}
+
+.flex-container {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.m {
+    color: #1c417c;
+    background-color: #a2caff;
+}
+  
+.f {
+    color: #791e2d;
+    background-color: #F7CED7FF;
+}
+
+.card {
+    width: auto;
+    height: 28px;
+    padding: 2px;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+.card p {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    text-align: center;
+    margin: 0;
+}
+
+#bottom-margin {
+    margin: 20px 60px 60px 60px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+}
