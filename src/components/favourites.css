@@ -1,0 +1,16 @@
+.favourites-container {
+    text-align: center;
+}
+
+.placeholder {
+    font-size: 16px;
+    font-weight: 600;
+    color: #8d8d8d;
+    padding-bottom: 20px;
+}
+
+#titlefav {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2f2f2f;
+}

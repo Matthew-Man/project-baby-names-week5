@@ -14,11 +14,7 @@ function App() {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchBar(e.target.value);
     const handleClickFavourites = (id: number) => addFavourites(findName(id));
-
-
-    // function toggleFavourites(name: string) {
-    //     if (babyNameData.includes(findName(name)))
-    // }
+    const handleRemoveFavourites = (id: number) => removeFavourites(findName(id));
 
 
     function addFavourites(name: IBabyNames | undefined): void {
@@ -30,21 +26,39 @@ function App() {
             setFavourites(newFavourites);
         }
     }
-
+    
+    
+    function removeFavourites(name: IBabyNames | undefined): void {
+        if (name === undefined) {
+            alert("There was an issue removing this name from your favourites, sorry");
+        } else {
+            const newFavourites = [...favourites]
+            const indexLocation = newFavourites.indexOf(name);
+            newFavourites.splice(indexLocation, 1);
+            setFavourites(newFavourites);
+        }
+    }
+    
 
     function findName(idNumber: number): IBabyNames | undefined {
-        //look at function .find()
         return babyNameData.find((item) => item.id === idNumber);
     }
 
-    console.log(favourites);
+
+    function sortNonFavData() {
+        if (favourites.length !== 0) {
+            return babyNameData.filter((item) => !favourites.includes(item));
+        } else {
+            return babyNameData
+        }
+    }
 
 
     function resultsToDisplay(searchTerm: string): IBabyNames[] {
         if (searchTerm !== "") {
-            return babyNameData.filter(({name}) => name.toLowerCase().includes(searchTerm.toLowerCase()))
+            return sortNonFavData().filter(({name}) => name.toLowerCase().includes(searchTerm.toLowerCase()))
         } else {
-            return babyNameData
+            return sortNonFavData()
         };
     };
 
@@ -52,8 +66,10 @@ function App() {
     return (
         <div className="outer-container">
             {displaySearchBar(searchBar, handleSearchChange)}
-            <DisplayFavourites listOfFavourites={favourites} removeFavourite={() => console.log("unfavourite")}/>
+            <DisplayFavourites listOfFavourites={favourites} removeFavourite={handleRemoveFavourites}/>
+            <hr id="top-margin"/>
             {displayBabyNames(resultsToDisplay(searchBar), handleClickFavourites)}
+            <hr id="bottom-margin"/>
         </div>
     );
 }

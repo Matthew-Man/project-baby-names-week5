@@ -24,12 +24,12 @@ export default function displayBabyNames(allData: IBabyNames[], handleAddFavouri
 
     return (
         <div>
-            <hr id="top-margin"/>
+            {/* <hr id="top-margin"/> */}
             <div className="flex-container">
                 {allData.map((babyName) => createBabyCard(babyName))}
             </div>
-            <br/>
-            <hr id="bottom-margin"/>
+            {/* <br/>
+            <hr id="bottom-margin"/> */}
         </div>
     )
 }
