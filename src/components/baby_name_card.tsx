@@ -24,13 +24,14 @@ export default function displayBabyNames(allData: IBabyNames[], handleAddFavouri
 
     return (
         <div>
-            {/* <hr id="top-margin"/> */}
             <div className="flex-container">
                 {allData.map((babyName) => createBabyCard(babyName))}
             </div>
-            {/* <br/>
-            <hr id="bottom-margin"/> */}
         </div>
     )
 }
+
+
+//For footer:
+{/* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
