@@ -23,7 +23,7 @@ function App() {
     const emptyFavourites: IBabyNames[] = [];
     const [searchBar, setSearchBar] = useState("");
     const [filterGender, setFilterGender] = useState("none");
-    const babyNameData = filterGenderData(filterGender);
+    const filteredBabyNameData = filterGenderData(filterGender);
     const [favourites, setFavourites] = useState(getLocalStorage());
     
 
@@ -67,7 +67,7 @@ function App() {
     
 
     function findName(idNumber: number): IBabyNames {
-        const dataset = babyNameData.find((item) => item.id === idNumber);
+        const dataset = data.find((item) => item.id === idNumber);
         if (dataset === undefined) {
             //Should only build this is certain this error will not occur - but have considered the scenario
             throw new TypeError("This shouldn't happen - undefined error from id")
@@ -78,9 +78,9 @@ function App() {
 
     function sortNonFavData() {
         if (favourites.length !== 0) {
-            return babyNameData.filter((item) => !favourites.includes(item));
+            return filteredBabyNameData.filter((item) => !favourites.includes(item));
         } else {
-            return babyNameData
+            return filteredBabyNameData
         }
     }
 
