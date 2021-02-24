@@ -6,19 +6,34 @@ import DisplayFavourites from "./components/favourites";
 import IBabyNames from "./components/interface";
 import "./App.css";
 
+
 function App() {
+    // Get data from local storage and convert to accepted data type
+    const getLocalStorage = (): IBabyNames[] => {
+        if (localStorage.length > 0) {
+            let arrayOfId: number[] = Object.keys(localStorage).map(Number);
+            const initalFavourites = arrayOfId.map(findName);
+            return initalFavourites;
+        } else {
+            return emptyFavourites;
+        }
+    }
+
     const localStorage = window.localStorage;
-    const emptyFavourites: IBabyNames[] = []
+    const emptyFavourites: IBabyNames[] = [];
     const [searchBar, setSearchBar] = useState("");
-    const [favourites, setFavourites] = useState(emptyFavourites);
     const [filterGender, setFilterGender] = useState("none");
     const babyNameData = filterGenderData(filterGender);
+    const [favourites, setFavourites] = useState(getLocalStorage());
     
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchBar(e.target.value);
     const handleClickFavourites = (id: number) => addFavourites(findName(id));
     const handleRemoveFavourites = (id: number) => removeFavourites(findName(id));
     const handleFilterChange = (filter: string) => setFilterGender(filter);
+
+
+    console.log(localStorage)
     
 
     function filterGenderData(gender: string): IBabyNames[] {
@@ -42,21 +57,22 @@ function App() {
     }
     
     
-    function removeFavourites(name: IBabyNames | undefined): void {
-        if (name === undefined) {
-            alert("There was an issue removing this name from your favourites, sorry");
-        } else {
+    function removeFavourites(name: IBabyNames): void {
             const newFavourites = [...favourites]
             const indexLocation = newFavourites.indexOf(name);
             newFavourites.splice(indexLocation, 1);
             setFavourites(newFavourites);
             localStorage.removeItem(name.id.toString());
-        }
     }
     
 
-    function findName(idNumber: number): IBabyNames | undefined {
-        return babyNameData.find((item) => item.id === idNumber);
+    function findName(idNumber: number): IBabyNames {
+        const dataset = babyNameData.find((item) => item.id === idNumber);
+        if (dataset === undefined) {
+            //Should only build this is certain this error will not occur - but have considered the scenario
+            throw new TypeError("This shouldn't happen - undefined error from id")
+        }
+        return dataset;
     }
 
 
