@@ -7,6 +7,7 @@ import IBabyNames from "./components/interface";
 import "./App.css";
 
 function App() {
+    const localStorage = window.localStorage;
     const emptyFavourites: IBabyNames[] = []
     const [searchBar, setSearchBar] = useState("");
     const [favourites, setFavourites] = useState(emptyFavourites);
@@ -36,6 +37,7 @@ function App() {
             const newFavourites = [...favourites]
             newFavourites.push(name);
             setFavourites(newFavourites);
+            localStorage.setItem(name.id.toString(), name.name);
         }
     }
     
@@ -48,6 +50,7 @@ function App() {
             const indexLocation = newFavourites.indexOf(name);
             newFavourites.splice(indexLocation, 1);
             setFavourites(newFavourites);
+            localStorage.removeItem(name.id.toString());
         }
     }
     
