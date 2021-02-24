@@ -11,10 +11,14 @@ function App() {
     const emptyFavourites: IBabyNames[] = []
     const [searchBar, setSearchBar] = useState("");
     const [favourites, setFavourites] = useState(emptyFavourites);
+    const [filterGender, setFilterGender] = useState("none");
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchBar(e.target.value);
     const handleClickFavourites = (id: number) => addFavourites(findName(id));
     const handleRemoveFavourites = (id: number) => removeFavourites(findName(id));
+    const handleFilterChange = (filter: string) => setFilterGender(filter);
+
+    console.log(filterGender)
 
 
     function addFavourites(name: IBabyNames | undefined): void {
@@ -65,11 +69,12 @@ function App() {
     //return components rather than js functions
     return (
         <div className="outer-container">
-            {displaySearchBar(searchBar, handleSearchChange)}
+            {displaySearchBar(searchBar, handleSearchChange, handleFilterChange)}
             <DisplayFavourites listOfFavourites={favourites} removeFavourite={handleRemoveFavourites}/>
             <hr id="top-margin"/>
             {displayBabyNames(resultsToDisplay(searchBar), handleClickFavourites)}
             <hr id="bottom-margin"/>
+            <div className="credits">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </div>
     );
 }

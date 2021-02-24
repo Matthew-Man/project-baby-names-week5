@@ -8,6 +8,11 @@
     border-radius: 10px;
 }
 
+.credits {
+    text-align: center;
+    padding: 20px;
+}
+
 #top-margin {
     margin: 0px 60px;
     border: 1px solid #d8d8d8;

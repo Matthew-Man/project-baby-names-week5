@@ -2,6 +2,7 @@
     margin: 40px;
     text-align: center;
     display: flex;
+    justify-content: center;
 }
 
 .input-container input {
@@ -39,4 +40,8 @@
   
 .f {
     background-color: #F7CED7FF;
+}
+
+.none {
+    background-color: #dadada;
 }
