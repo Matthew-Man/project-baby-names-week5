@@ -7,18 +7,26 @@ import IBabyNames from "./components/interface";
 import "./App.css";
 
 function App() {
-    const babyNameData = data;
     const emptyFavourites: IBabyNames[] = []
     const [searchBar, setSearchBar] = useState("");
     const [favourites, setFavourites] = useState(emptyFavourites);
     const [filterGender, setFilterGender] = useState("none");
+    const babyNameData = filterGenderData(filterGender);
+    
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => setSearchBar(e.target.value);
     const handleClickFavourites = (id: number) => addFavourites(findName(id));
     const handleRemoveFavourites = (id: number) => removeFavourites(findName(id));
     const handleFilterChange = (filter: string) => setFilterGender(filter);
+    
 
-    console.log(filterGender)
+    function filterGenderData(gender: string): IBabyNames[] {
+        if (gender !== "none") {
+            return data.filter(({sex}) => sex === gender)
+        } else {
+            return data
+        }
+    };
 
 
     function addFavourites(name: IBabyNames | undefined): void {
@@ -69,7 +77,7 @@ function App() {
     //return components rather than js functions
     return (
         <div className="outer-container">
-            {displaySearchBar(searchBar, handleSearchChange, handleFilterChange)}
+            {displaySearchBar(searchBar, handleSearchChange, handleFilterChange, filterGender)}
             <DisplayFavourites listOfFavourites={favourites} removeFavourite={handleRemoveFavourites}/>
             <hr id="top-margin"/>
             {displayBabyNames(resultsToDisplay(searchBar), handleClickFavourites)}

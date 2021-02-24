@@ -45,3 +45,7 @@
 .none {
     background-color: #dadada;
 }
+
+.underline {
+    border-bottom: 3px solid #626262;
+}
